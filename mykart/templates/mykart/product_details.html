@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+</head>
+<body>
+    <div>
+        <img src="{{ MEDIA_URL }}{{ object.product_image.url }}">
+        <p>product name : <b>{{ object.product_name }}</b></p>
+        <p>product price : <b>{{ object.price }}</b></p>
+    </div>
+</body>
+</html>

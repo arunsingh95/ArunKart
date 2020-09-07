@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .row card {
+            width: 50%;
+            height: auto;
+        }
+        .card{
+            margin: 17px;
+            width: 15rem;
+            height: 22rem;
+        }
+        .font{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3 class="font">List Of Products</h3>
+    <div class="row">
+        {% for i in product %}
+{#            <div>#}
+{#                <img src="{{ MEDIA_URL }}{{ i.product_image.url }}">#}
+{#                <p>product name : <b>{{ i.product_name }}</b></p>#}
+{#                <p>product price : <b>{{ i.price }}</b></p>#}
+{#            </div>#}
+            <div class="card">
+                  <img class="card-img-top" src="{{ MEDIA_URL }}{{ i.product_image.url }}" alt="Card image cap">
+                  <div class="card-body">
+                       <p>name : <b>{{ i.product_name }}</b></p>
+                       <p>price : <b>{{ i.price }}</b></p>
+                       <a href="#" class="btn btn-primary">Add to Kart</a>
+                  </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

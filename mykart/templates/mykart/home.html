@@ -5,12 +5,33 @@
     <title>Home</title>
 </head>
 <body>
-    <p>{% for i in object_list %}</p>
-        <p>{{ i.full_name }}</p>
-        <p>{{ i.age }}</p>
-        <p>{{ i.city }}</p>
-        <p>{{ i.country }}</p>
-    <p>{% endfor %}</p>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>City</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in users %}
+            <tr>
+                <td>{{ i.full_name }}</td>
+                <td>{{ i.age }}</td>
+                <td>{{ i.city }}</td>
+                <td>{{ i.country }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+{#    <p>{% for i in object_list %}</p>#}
+{#        <p>{{ i.full_name }}</p>#}
+{#        <p>{{ i.age }}</p>#}
+{#        <p>{{ i.city }}</p>#}
+{#        <p>{{ i.country }}</p>#}
+{#    <p>{% endfor %}</p>#}
 
 </body>
 </html>
