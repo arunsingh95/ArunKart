@@ -1,6 +1,5 @@
 django==2.2
 djangorestframework==3.11
 django-imagekit
-django-filters
 django-import-export
 whitenoise
