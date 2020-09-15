@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mykart',
     'rest_framework',
-    'import_export',
     'imagekit',
     'django_filters'
 ]
