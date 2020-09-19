@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body style="background-color:black;">
+<div class="card container" style="margin: auto;width: 500px;height: 350px;border: ridge;margin-top: 50px;">
+
+   <form method="POST" method="/login/" style="margin: 50px ;">
+      {% csrf_token %}
+       <h3>Login</h3>
+      {% if message %}
+          <p>{{ message }}</p>
+      {% endif %}
+      <div class="form-group row">
+        <label for="exampleInputName2" class="col-sm-4 col-form-label">Username</label>
+            <div >
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" style="width: auto;">
+            </div>
+      </div>
+      <div class="form-group row">
+        <label for="exampleInputPassword1" class="col-sm-4 col-form-label">Password</label>
+          <div >
+              <input type="password" class="form-control" id="InputPassword" name="InputPassword" style="width: auto;">
+          </div>
+      </div>
+{#      <p>Click here to <a href="{% url 'register' %}">REGISTER</a></p>#}
+      <button type="submit" class="btn btn-primary" id="login_submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

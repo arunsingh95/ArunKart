@@ -1,6 +1,8 @@
 from mykart.models import (UserDetail,
                            ProductDetail)
 from rest_framework.generics import ListCreateAPIView, UpdateAPIView, DestroyAPIView, RetrieveUpdateAPIView
+from rest_framework.viewsets import ViewSet
+from rest_framework.response import Response
 from mykart.serializers import (UserDetailSerializer,
                                 ProductDetailSerializer)
 from django_filters.rest_framework import DjangoFilterBackend
@@ -34,3 +36,11 @@ class ProductUpdateApi(RetrieveUpdateAPIView):
     queryset = ProductDetail.objects.select_related('manufacture', 'product_category')
     serializer_class = ProductDetailSerializer
     lookup_field = 'pk'
+
+
+class ProductViewset(ViewSet):
+
+    def list(self, request):
+        queryset = ProductDetail.objects.all()
+        serializer = ProductDetailSerializer(queryset, many=True)
+        return Response(serializer.data)

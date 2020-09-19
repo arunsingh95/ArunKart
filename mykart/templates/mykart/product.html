@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "mykart/base.html" %}
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <title>Product</title>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+{#        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">#}
     <style>
         .row card {
             width: 50%;
@@ -12,7 +12,7 @@
         .card{
             margin: 17px;
             width: 15rem;
-            height: 22rem;
+            height: 24rem;
         }
         .font{
             text-align: center;
@@ -40,4 +40,4 @@
     </div>
 
 </body>
-</html>
+{% endblock %}
