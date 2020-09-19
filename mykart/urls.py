@@ -9,7 +9,7 @@ router.register(r'products', api.ProductViewset, basename='products')
 
 urlpatterns = [
     # URLS
-    url(r'^login/$', views.LoginView.as_view(), name='login'),
+    url(r'^$', views.LoginView.as_view(), name='login'),
     url(r'^users/$', views.Home.as_view(), name='users'),
     url(r'^delete_users/(?P<pk>\d+)$', views.DeleteUsers.as_view(), name='delete'),
     url(r'^product/$', views.Product.as_view(), name='product'),
@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^api/user_details/delete/(?P<pk>\d+)$', api.UserDetailDeleteApi.as_view(), name='user_detail_delete_api'),
     url(r'^api/products/$', api.ProductDetailApi.as_view(), name='products_api'),
     url(r'^api/products/edit/(?P<pk>\d+)$', api.ProductUpdateApi.as_view(), name='product_update_api'),
-    url(r'^', include(router.urls)),
+    # url(r'^', include(router.urls)),
 ]
