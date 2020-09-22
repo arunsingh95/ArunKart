@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Register</title>
+    <link rel="stylesheet" href="{% static 'mykart/css/bootstrap.min.css' %}" >
+{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">#}
+
+</head>
+<body style="background-color:black;">
+    <div class="card text-center container" style="width: 850px;height: 500px;border: ridge;margin-top: 50px;">
+      <form method="POST" style="margin-top: 30px;">
+        {% csrf_token %}
+        <h2 style="margin-bottom: 20px;"> Register yourself to witness one of the coolest website.</h2>
+        <div class="form-group row">
+          <label for="exampleInputName2" class="col-sm-2 col-form-label">Username</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" style="width: 500px;">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputEmail2" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" style="width: 500px;">
+          </div>
+        </div>
+        {% if message %}
+            <p class="text-danger">{{ message }}</p>
+        {% endif %}
+        <div class="form-group row">
+          <label for="exampleInputPassword1" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="InputPassword" name="InputPassword" required="" style="width: 500px;">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputPassword2" class="col-sm-2 col-form-label">Confirm Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="confirmInputPassword" name="confirmInputPassword" style="width: 500px;">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputName" class="col-sm-2 col-form-label">First Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="first_name" name="first_name" required="" placeholder="First Name" style="width: 500px;">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputName" class="col-sm-2 col-form-label">Last Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="last_name" name="last_name"  required="" placeholder="Last Name" style="width: 500px;">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-2 offset-sm-2">
+            <button type="submit" class="btn btn-primary" id="register_submit">Submit</button>
+          </div>
+          <div class="col-2">
+              <p>click to sign in <a href="{% url 'login' %}">Login</a></p>
+          </div>
+        </div>
+      </form>
+    </div>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#register_submit').on('click',function(){
+            var username = $('#username').val();
+            var email = $('#email').val();
+            var password = $('#InputPassword').val();
+            var confirm_password = $('#confirmInputPassword').val();
+            var first_name = $('#first_name').val();
+            var last_name = $('#last_name').val();
+            console.log('takli',username,email,password,confirm_password);
+            $.ajax({
+                url : '/register/',
+                type : 'POST',
+                data : {
+                    username : username,
+                    email : email,
+                    password : password,
+                    confirm_password : confirm_password,
+                    first_name : first_name,
+                    last_name : last_name
+                },
+                success: function(data){
+                    console.log('arun singh');
+                }
+            });
+        });
+    });
+</script>

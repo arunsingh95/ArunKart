@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
 	<title>Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'mykart/css/bootstrap.min.css' %}" >
+{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">#}
 </head>
 <body style="background-color:black;">
 <div class="card container" style="margin: auto;width: 500px;height: 350px;border: ridge;margin-top: 50px;">
@@ -25,7 +27,7 @@
               <input type="password" class="form-control" id="InputPassword" name="InputPassword" style="width: auto;">
           </div>
       </div>
-{#      <p>Click here to <a href="{% url 'register' %}">REGISTER</a></p>#}
+      <p>Click here to <a href="{% url 'register' %}">REGISTER</a></p>
       <button type="submit" class="btn btn-primary" id="login_submit">Submit</button>
     </form>
 </div>

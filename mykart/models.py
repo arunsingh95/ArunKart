@@ -8,10 +8,16 @@ from imagekit.models import ProcessedImageField
 
 
 class UserDetail(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default=1)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=20, default='', blank=True)
     last_name = models.CharField(max_length=20, default='', blank=True)
-    full_name = models.CharField(max_length=20, default='', blank=True)
+
+    def save(self, force_insert=False, force_update=False, *args, **kwargs):
+        if self.first_name and self.last_name:
+            self.full_name = f"{self.first_name} {self.last_name}"
+        super(UserDetail, self).save(*args, **kwargs)
+
+    full_name = models.CharField(max_length=50, default='', blank=True)
     age = models.PositiveIntegerField(default=0, blank=True)
     email = models.EmailField(default=None, blank=True)
     city = models.CharField(max_length=25, default='', blank=True)
