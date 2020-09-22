@@ -20,18 +20,22 @@ class RegisterView(View):
         confirm_password = request.POST.get('confirmInputPassword')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        if password == confirm_password:
-            user = User.objects.create_user(username, email, password)
-            user.first_name = first_name
-            user.last_name = last_name
-            user.save()
-            UserDetail.objects.create(user=user, first_name=first_name, last_name=last_name, email=email)
-            return redirect('/')
+        if not User.objects.filter(username=username).exists():
+            if password == confirm_password:
+                user = User.objects.create_user(username, email, password)
+                user.first_name = first_name
+                user.last_name = last_name
+                user.save()
+                UserDetail.objects.create(user=user, first_name=first_name, last_name=last_name, email=email)
+                return redirect('/')
+            else:
+                error_message = "password and current password do not match"
         else:
-            context = {
-                'message': "password and current password do not match"
-            }
-            return render(request, 'mykart/register.html', context)
+            error_message = "user with this username already exists"
+        context = {
+            'message': error_message
+        }
+        return render(request, 'mykart/register.html', context)
 
 
 class LoginView(View):
