@@ -4,9 +4,6 @@ from imagekit.processors import ResizeToFill
 from imagekit.models import ProcessedImageField
 
 
-# Create your models here.
-
-
 class UserDetail(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=20, default='', blank=True)

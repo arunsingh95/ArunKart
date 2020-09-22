@@ -4,3 +4,5 @@ product_image/
 images_pro/
 staticfiles/
 media/
+.idea/
+*.pyc

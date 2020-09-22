@@ -10,12 +10,9 @@ from .mixins import RequireLoginMixin
 
 
 class RegisterView(View):
-    # def register(request):
-    #     if request.method == 'GET':
     def get(self, request):
         return render(request, 'mykart/register.html')
 
-        # elif request.method == 'POST':
     def post(self, request):
         username = request.POST.get('username')
         email = request.POST.get('email')
