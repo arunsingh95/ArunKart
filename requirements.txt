@@ -6,3 +6,4 @@ Pillow==6.2.1
 pandas==1.0.1
 requests==2.22.0
 whitenoise
+gunicorn
