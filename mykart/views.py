@@ -5,7 +5,10 @@ from django.views.generic import (ListView,
                                   DetailView,
                                   DeleteView,
                                   View)
-from mykart.models import UserDetail, ProductDetail
+from mykart.models import (UserDetail,
+                           ProductDetail,
+                           ProductCategory,
+                           Manufacture)
 from .mixins import RequireLoginMixin
 
 
@@ -74,9 +77,17 @@ class DeleteUsers(RequireLoginMixin, DeleteView):
 class Product(RequireLoginMixin, ListView):
     model = ProductDetail
     template_name = "mykart/product.html"
-    context_object_name = "product"
+    # context_object_name = "product"
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["product"] = ProductDetail.objects.all()
+        context["category"] = ProductCategory.objects.all()
+        context["manufacture"] = Manufacture.objects.all()
+        return context
 
 
 class ProductDetails(RequireLoginMixin, DetailView):
     model = ProductDetail
     template_name = "mykart/product_details.html"
+

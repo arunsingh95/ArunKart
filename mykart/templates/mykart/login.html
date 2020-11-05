@@ -1,46 +1,101 @@
 <!DOCTYPE html>
 {% load static %}
-<html>
+<html lang="en">
 <head>
-	<title>Login</title>
+	<title>ArunKart Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'mykart/css/bootstrap.min.css' %}" >
-{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">#}
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'mykart/images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'mykart/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'mykart/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'mykart/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'mykart/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'mykart/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'mykart/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'mykart/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'mykart/vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'mykart/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'mykart/css/main.css' %}">
+<!--===============================================================================================-->
 </head>
-<style>
-    html {
-      background-image:  "C:\\Users\\ARUN\DesktopC:\Users\ARUN\Desktop\back_ground.gif";
-      background-size: cover;
-    }
-    body {
-        height: 100%;
-    }
-</style>
-<body >
-<div class="card container" style="margin: auto;width: 500px;height: 350px;border: ridge;margin-top: 50px;">
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('static/mykart/images/FS_02.jpg');">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" method="POST" method="/login/">
+                    {% csrf_token %}
+					<span class="login100-form-logo">
+						<i class="zmdi zmdi-landscape"></i>
+					</span>
 
-   <form method="POST" method="/login/" style="margin: 50px ;">
-      {% csrf_token %}
-       <h3>Login</h3>
-      {% if message %}
-          <p>{{ message }}</p>
-      {% endif %}
-      <div class="form-group row">
-        <label for="exampleInputName2" class="col-sm-4 col-form-label">Username</label>
-            <div >
-                <input type="text" class="form-control" id="username" name="username" placeholder="Username" style="width: auto;">
-            </div>
-      </div>
-      <div class="form-group row">
-        <label for="exampleInputPassword1" class="col-sm-4 col-form-label">Password</label>
-          <div >
-              <input type="password" class="form-control" id="InputPassword" name="InputPassword" style="width: auto;">
-          </div>
-      </div>
-      <p>Click here to <a href="{% url 'register' %}">REGISTER</a></p>
-      <button type="submit" class="btn btn-primary" id="login_submit">Submit</button>
-    </form>
-</div>
+					<span class="login100-form-title p-b-34 p-t-27">
+						Log in
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Enter username">
+						<input class="input100" type="text" id="username" name="username" placeholder="Username">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input class="input100" type="password" id="InputPassword" name="InputPassword" placeholder="Password">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
+
+					<div class="contact100-form-checkbox">
+						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+						<label class="label-checkbox100" for="ckb1">
+							Remember me
+						</label>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Login
+						</button>
+					</div>
+
+					<div class="text-center p-t-90">
+						<a class="txt1" href="#">
+							Forgot Password?
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="{% static 'mykart/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'mykart/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'mykart/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'mykart/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'mykart/vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'mykart/vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'mykart/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'mykart/vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'mykart/js/main.js' %}"></script>
 
 </body>
 </html>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

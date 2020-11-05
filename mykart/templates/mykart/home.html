@@ -18,7 +18,7 @@
                 <td>{{ i.age }}</td>
                 <td>{{ i.city }}</td>
                 <td>{{ i.country }}</td>
-                <td><button><a href="{% url 'delete' i.id %}" >Delete</a></button> <button id="edit_user"><a href="#" >Edit</a></button></td>
+                <td><button><a href="{% url 'delete' i.id %}" >Delete</a></button> <button id="edit_user" value="{{ i.id }}"><a href="#" >Edit</a></button></td>
             </tr>
         {% endfor %}
         </tbody>
@@ -30,12 +30,13 @@
     $(document).ready( function () {
         $('#user_table').DataTable();
 
-        function edit_user(){
-            $("#edit_user").onclick(function () {
-                console.log("XXXXXX")
-            });
-        };
-        edit_user();
+        //function edit_user(){
+        $("#edit_user").on('click',function () {
+            console.log("XXXXXX")
+            console.log($(this).val());
+        });
+        //}
+        //edit_user();
 
     } );
 </script>

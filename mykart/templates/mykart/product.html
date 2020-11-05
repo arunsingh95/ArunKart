@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Product</title>
-{#        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">#}
+{#    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">#}
     <style>
         .row card {
             width: 50%;
@@ -17,11 +17,95 @@
         .font{
             text-align: center;
         }
+        .add_product{
+            margin: 10px;
+            margin-left: 90%;
+            position: absolute;
+        }
+        .product_card{
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
-    <h3 class="font">List Of Products</h3>
-    <div class="row">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary add_product" data-toggle="modal" data-target="#exampleModalScrollable">
+      Add Product
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalScrollableTitle">Add Product</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+{#            <form>#}
+{#              {% csrf_token %}#}
+              <div class="form-group">
+                <label for="formGroupExampleInput">Product Name</label>
+                <input type="text" class="form-control" id="product_name" placeholder="Product Name" required>
+              </div>
+              <div class="form-group">
+                <label for="product_category">Product Category</label>
+                <select class="form-control" id="product_category" required>
+                  <option value="0">Select Category</option>
+                  {% for i in category %}
+                    <option value="{{ i.category_name }}">{{ i.category_name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="manufacture">Manufacturer</label>
+                <select class="form-control" id="manufacture" required>
+                  <option>Select Manufacture</option>
+                  {% for i in manufacture %}
+                    <option value="{{ i.company_name }}">{{ i.company_name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="product_cost">Product Cost</label>
+                <input type="number" class="form-control" id="product_cost" placeholder="Product Cost" required>
+              </div>
+              <div class="form-group">
+                <label for="available_stocks">Available Stocks</label>
+                <input type="number" class="form-control" id="available_stocks" placeholder="Add Quantity" required>
+              </div>
+              <div class="form-group">
+                <label for="product_discount">Discount On Product</label>
+                <select class="form-control" id="product_discount" required>
+                  <option>Select Discount</option>
+                  <option>10</option>
+                  <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="product_image">Select Image</label>
+                <input type="file" class="form-control" id="product_image" name="product_img" accept="image/*" required>
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+{#                <button type="button" class="btn btn-primary" id="submit_product_data">Save changes</button>#}
+{#                <button type="button" class="btn btn-primary" id="submit_product_data">Save changes</button>#}
+                <input type="submit" class="btn btn-primary" id="submit_product_data" value="Save changes">
+              </div>
+{#            </form>#}
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="m-md-2">
+        <h3 class="font">List Of Products</h3>
+    </div>
+    <div class="row product_card">
         {% for i in product %}
 {#            <div>#}
 {#                <img src="{{ MEDIA_URL }}{{ i.product_image.url }}">#}
@@ -40,4 +124,44 @@
     </div>
 
 </body>
+<script>
+    $(document).ready( function () {
+        $("#submit_product_data").on('click', function () {
+            var token = '{{csrf_token}}';
+            console.log("submit_product_data!!!!", token);
+            product_name = $("#product_name").val();
+            product_category = $("#product_category").val();
+            manufacture = $("#manufacture").val();
+            product_cost = $("#product_cost").val();
+            available_stocks = $("#available_stocks").val();
+            product_discount = $("#product_discount").val();
+            product_image = $("#product_image").val();
+
+            console.log("XXXXX",product_name,product_image, $('input[name="product_img"]')[0]);
+
+            var fd = new FormData();
+            fd.append( 'product_name', product_name );
+            fd.append( 'manufacture', manufacture );
+            fd.append( 'product_category', product_category );
+            fd.append( 'price', product_cost );
+            fd.append( 'quantity', available_stocks );
+            fd.append( 'discount', product_discount );
+            fd.append( 'product_image', $('input[name="product_img"]')[0].files[0] );
+
+            $.ajax({
+              headers: { "X-CSRFToken": token },
+              url: 'http://127.0.0.1:8000/api/products/',
+              data: fd,
+              processData: false,
+              contentType: false,
+              type: 'POST',
+              success: function(data){
+                  {#alert(data);#}
+                console.log(data);
+                {#console.log(data.json());#}
+              }
+            });
+        })
+    });
+</script>
 {% endblock %}
