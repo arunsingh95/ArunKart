@@ -14,6 +14,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
 
 class ProductDetailSerializer(serializers.ModelSerializer):
+    product_image = serializers.ImageField(required=False, use_url=False)
     manufacture = serializers.SlugRelatedField(queryset=Manufacture.objects.only('company_name'), slug_field='company_name')
     product_category = serializers.SlugRelatedField(queryset=ProductCategory.objects.only('category_name'), slug_field='category_name')
 
