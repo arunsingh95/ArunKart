@@ -9,7 +9,6 @@
     body{
         {#background-size: cover;#}
         background: center/cover url("https://images.unsplash.com/photo-1536008758366-72fbc5b16911?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1568&q=80");
-
     }
     .container{
         width: 500px;
@@ -37,7 +36,7 @@
     #login_button{
         width: max-content;
         font-weight: bold;
-        padding-left: 100px;
+        padding-left: 20px;
     }
     .form-control{
         width: 300px;
@@ -49,9 +48,7 @@
         font-style: italic;
         font-size: 20px;
     }
-    .btn{
-        transform: translateX(80px);
-    }
+
 </style>
 </head>
 <body>
@@ -110,7 +107,8 @@
     </div>
 </body>
 </html>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+{#<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>#}
+<script src="{% static 'mykart/js/jquery-3.5.1.js' %}" ></script>
 <script type="text/javascript">
     $(document).ready(function(){
         $('#register_submit').on('click',function(){
