@@ -5,50 +5,95 @@
 	<title>Register</title>
     <link rel="stylesheet" href="{% static 'mykart/css/bootstrap.min.css' %}" >
 {#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">#}
-
+<style>
+    body{
+        background-image: url("https://images.unsplash.com/photo-1536008758366-72fbc5b16911?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1568&q=80");
+    }
+    .container{
+        width: 500px;
+        margin-top: 100px;
+    }
+    .row{
+        flex-wrap: nowrap;
+    }
+    form{
+        margin: auto;
+        width: 500px;
+        padding-top: 15px;
+        padding-right: 50px;
+    }
+    h2{
+        display: flex;
+        justify-content: center;
+        font-size: 23px;
+        padding: 5px;
+        background-color: #68c3ba;
+        background-size: 100px;
+        transform: translateY(70px);
+        font-style: italic;
+    }
+    #login_button{
+        width: max-content;
+        font-weight: bold;
+        padding-left: 100px;
+    }
+    .form-control{
+        width: 300px;
+        transform: translateX(50px);
+        margin-left: -50px;
+    }
+    .col-form-label{
+        {#width: 50px;#}
+        font-style: italic;
+        font-size: 20px;
+    }
+    .btn{
+        transform: translateX(80px);
+    }
+</style>
 </head>
-<body style="background-color:black;">
-    <div class="card text-center container" style="width: 850px;height: 500px;border: ridge;margin-top: 50px;">
-      <form method="POST" style="margin-top: 30px;">
+<body>
+    <h2> Register yourself to witness one of the coolest website.</h2>
+    <div class="card text-center container" >
+      <form method="POST" >
         {% csrf_token %}
-        <h2 style="margin-bottom: 20px;"> Register yourself to witness one of the coolest website.</h2>
         <div class="form-group row">
-          <label for="exampleInputName2" class="col-sm-2 col-form-label">Username</label>
+          <label for="exampleInputName2" class="col-sm-4 col-form-label">Username</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="username" name="username" placeholder="Username" style="width: 500px;">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" >
           </div>
         </div>
         <div class="form-group row">
-          <label for="exampleInputEmail2" class="col-sm-2 col-form-label">Email</label>
+          <label for="exampleInputEmail2" class="col-sm-4 col-form-label">Email</label>
           <div class="col-sm-10">
-            <input type="email" class="form-control" id="email" name="email" placeholder="Email" style="width: 500px;">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
           </div>
         </div>
         {% if message %}
             <p class="text-danger">{{ message }}</p>
         {% endif %}
         <div class="form-group row">
-          <label for="exampleInputPassword1" class="col-sm-2 col-form-label">Password</label>
+          <label for="exampleInputPassword1" class="col-sm-4 col-form-label">Password</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="InputPassword" name="InputPassword" required="" style="width: 500px;">
+            <input type="password" class="form-control" id="InputPassword" name="InputPassword" required="" >
           </div>
         </div>
         <div class="form-group row">
-          <label for="exampleInputPassword2" class="col-sm-2 col-form-label">Confirm Password</label>
+          <label for="confirmInputPassword" class="col-sm-4 col-form-label">Confirm Password</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="confirmInputPassword" name="confirmInputPassword" style="width: 500px;">
+            <input type="password" class="form-control" id="confirmInputPassword" name="confirmInputPassword" >
           </div>
         </div>
         <div class="form-group row">
-          <label for="exampleInputName" class="col-sm-2 col-form-label">First Name</label>
+          <label for="exampleInputName" class="col-sm-4 col-form-label">First Name</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="first_name" name="first_name" required="" placeholder="First Name" style="width: 500px;">
+            <input type="text" class="form-control" id="first_name" name="first_name" required="" placeholder="First Name" >
           </div>
         </div>
         <div class="form-group row">
-          <label for="exampleInputName" class="col-sm-2 col-form-label">Last Name</label>
+          <label for="exampleInputName" class="col-sm-4 col-form-label">Last Name</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="last_name" name="last_name"  required="" placeholder="Last Name" style="width: 500px;">
+            <input type="text" class="form-control" id="last_name" name="last_name"  required="" placeholder="Last Name" >
           </div>
         </div>
         <div class="form-group row">
@@ -56,7 +101,7 @@
             <button type="submit" class="btn btn-primary" id="register_submit">Submit</button>
           </div>
           <div class="col-2">
-              <p>click to sign in <a href="{% url 'login' %}">Login</a></p>
+              <p id="login_button">click to sign in <a href="{% url 'login' %}">Login</a></p>
           </div>
         </div>
       </form>

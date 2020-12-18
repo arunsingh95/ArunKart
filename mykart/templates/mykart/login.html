@@ -28,11 +28,18 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'mykart/css/util.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'mykart/css/main.css' %}">
 <!--===============================================================================================-->
+<style>
+    .container-login100::before{
+        background-size: cover;
+        background-image: url('static/mykart/images/FS_02.jpg');
+        background-color: rgb(255,255,255,0);
+    }
+</style>
 </head>
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('static/mykart/images/FS_02.jpg');">
+		<div class="container-login100">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method="POST" method="/login/">
                     {% csrf_token %}
