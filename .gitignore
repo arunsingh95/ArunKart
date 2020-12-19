@@ -1,6 +1,5 @@
 .idea/
 *.pyc
-migrations/
 profile_image/
 product_image/
 images_pro/
