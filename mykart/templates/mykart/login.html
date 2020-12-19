@@ -32,10 +32,28 @@
     body{
         {#background-size: cover;#}
         background: center/cover  no-repeat url('static/mykart/images/back_image.jpg');
-
     }
     .container-login100::before{
         background-color: rgb(255,255,255,0);
+    }
+    .wrap-login100{
+        width: 400px;
+        height: 550px;
+    }
+    .p-t-90{
+        padding: 20px;
+    }
+    .text-white{
+        margin-bottom: 10px;
+        margin-top: -20px;
+    }
+    #register{
+        color: #1A01CC;
+        font-weight: bold ;
+    }
+    #register:hover{
+        color: red;
+        font-size: 16px;
     }
 </style>
 </head>
@@ -64,11 +82,11 @@
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
-					<div class="contact100-form-checkbox">
+					<div class="text-white">
 {#						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">#}
                         click here to
-						<a class="text-white" href="{% url 'register' %}">
-							<strong>Register Now !!</strong>
+						<a id="register" href="{% url 'register' %}">
+							Register Now !!
 						</a>
 					</div>
 
