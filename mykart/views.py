@@ -51,7 +51,7 @@ class LoginView(View):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect("users")
+            return redirect("product")
         else:
             error_message = "username or password is invalid"
             return render(request, 'mykart/login.html', {'message': error_message})
@@ -63,9 +63,15 @@ class LogoutView(View):
         return redirect("login")
 
 
-class Home(RequireLoginMixin , ListView):
+class Home(RequireLoginMixin, ListView):
     model = UserDetail
     template_name = 'mykart/home.html'
+    # context_object_name = 'users'
+
+
+class Users(RequireLoginMixin, ListView):
+    model = UserDetail
+    template_name = 'mykart/users.html'
     context_object_name = 'users'
 
 

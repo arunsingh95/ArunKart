@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'mykart',
     'rest_framework',
     'imagekit',
-    'django_filters'
+    'django_filters',
+
 ]
 
 

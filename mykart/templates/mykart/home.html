@@ -1,43 +1,46 @@
 {% extends "mykart/base.html" %}
+{% load mykart_tags %}
 {% block content %}
-<body>
-    <table class="table" id="user_table" border="1">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>City</th>
-                <th>Country</th>
-                <th>Delete User</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for i in users %}
-            <tr>
-                <td>{{ i.full_name }}</td>
-                <td>{{ i.age }}</td>
-                <td>{{ i.city }}</td>
-                <td>{{ i.country }}</td>
-                <td><button><a href="{% url 'delete' i.id %}" >Delete</a></button> <button id="edit_user" value="{{ i.id }}"><a href="#" >Edit</a></button></td>
-            </tr>
-        {% endfor %}
-        </tbody>
+{#<body>#}
+{#    <table class="table" id="user_table" border="1">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Name</th>#}
+{#                <th>Age</th>#}
+{#                <th>City</th>#}
+{#                <th>Country</th>#}
+{#                <th>Delete User</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#        {% for i in users %}#}
+{#            <tr>#}
+{#                <td>{{ i.full_name }}</td>#}
+{#                <td>{{ i.age }}</td>#}
+{#                <td>{{ i.city }}</td>#}
+{#                <td>{{ i.country }}</td>#}
+{#                {% if request.user|has_group:"Admin" %}#}
+{#                    <td><button><a href="{% url 'delete' i.id %}" >Delete</a></button> <button id="edit_user" value="{{ i.id }}"><a href="#" >Edit</a></button></td>#}
+{#                {% endif %}#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{#        </tbody>#}
+{##}
+{#    </table>#}
 
-    </table>
-
-</body>
-<script>
-    $(document).ready( function () {
-        $('#user_table').DataTable();
-
-        //function edit_user(){
-        $("#edit_user").on('click',function () {
-            console.log("XXXXXX")
-            console.log($(this).val());
-        });
-        //}
-        //edit_user();
-
-    } );
-</script>
+{#</body>#}
+{#<script>#}
+{#    $(document).ready( function () {#}
+{#        $('#user_table').DataTable();#}
+{##}
+{#        //function edit_user(){#}
+{#        $("#edit_user").on('click',function () {#}
+{#            console.log("XXXXXX")#}
+{#            console.log($(this).val());#}
+{#        });#}
+{#        //}#}
+{#        //edit_user();#}
+{##}
+{#    } );#}
+{#</script>#}
 {% endblock %}

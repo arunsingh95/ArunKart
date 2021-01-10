@@ -5,32 +5,67 @@
     <title>Product</title>
 {#    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">#}
     <style>
-        .row card {
-            width: 50%;
-            height: auto;
+
+        body{
+            background-color: #95999c;
         }
-        .card{
-            margin: 17px;
-            width: 15rem;
-            height: 24rem;
+
+        h3 {
+            font-style: italic;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: underline;
         }
-        .font{
-            text-align: center;
+
+        .container {
+            max-width: 1400px;
         }
+
+        .card {
+            background: dimgray;
+            width: 300px;
+            height: 450px;
+            margin: 15px 20px 20px;
+            border: 2px solid darkred;
+        }
+        img {
+            border: 1px solid darkgray;
+        }
+
+        .product_label {
+            margin: 10px 5px 5px;
+        }
+
+        .product_value {
+            margin-left: 20px;
+            padding: 3px;
+            font-style: italic;
+            color: dodgerblue;
+            border: 3px solid dodgerblue;
+        }
+        span {
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        #add_kart {
+            margin: inherit;
+        }
+
         .add_product{
             margin: 10px;
             margin-left: 90%;
             position: absolute;
         }
-        .product_card{
-            margin-left: 10px;
-        }
+
+
+
     </style>
 </head>
 <body>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary add_product" data-toggle="modal" data-target="#exampleModalScrollable">
-      Add Product
+        <span class="badge badge-light">&plus;</span> Add Product
     </button>
 
     <!-- Modal -->
@@ -103,25 +138,39 @@
       </div>
     </div>
     <div class="m-md-2">
-        <h3 class="font">List Of Products</h3>
+        <h3 class="text-center ">List Of Products</h3>
     </div>
-    <div class="row product_card">
-        {% for i in product %}
-{#            <div>#}
-{#                <img src="{{ MEDIA_URL }}{{ i.product_image.url }}">#}
-{#                <p>product name : <b>{{ i.product_name }}</b></p>#}
-{#                <p>product price : <b>{{ i.price }}</b></p>#}
-{#            </div>#}
-            <div class="card">
-                  <img class="card-img-top" src="{{ MEDIA_URL }}{{ i.product_image.url }}" alt="Card image cap">
-                  <div class="card-body">
-                       <p>name : <b>{{ i.product_name }}</b></p>
-                       <p>price : <b>{{ i.price }}</b></p>
-                       <a href="#" class="btn btn-primary">Add to Kart</a>
-                  </div>
-            </div>
-        {% endfor %}
+    <div class="container">
+        <div class="row">
+            {% for i in product %}
+                <div class="card">
+                    <img class="card-img-top " src="{{ MEDIA_URL }}{{ i.product_image.url }}" alt="Card image cap">
+                    <p class="product_label">
+                        <span>Name </span><span class="product_value"><b>{{ i.product_name }}</b></span>
+                    </p>
+                    <p class="product_label">
+                        <span>Price </span><span class="product_value"><b>{{ i.price }}</b></span>
+                    </p>
+                    <button class="btn btn-primary" id="add_kart">Add To kart</button>
+                </div>
+            {% endfor %}
+        </div>
     </div>
+
+{#    <div class="container">#}
+{#        <div class="row product_card">#}
+{#            {% for i in product %}#}
+{#                <div class="card">#}
+{#                      <img class="card-img-top product_image" src="{{ MEDIA_URL }}{{ i.product_image.url }}" alt="Card image cap">#}
+{#                      <div class="row card-body">#}
+{#                           <p>name : <b>{{ i.product_name }}</b></p>#}
+{#                           <p>price : <b>{{ i.price }}</b></p>#}
+{#                           <a href="#" class="btn btn-primary" id="add_kart">Add to Kart</a>#}
+{#                      </div>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
 
 </body>
 <script>
@@ -156,9 +205,7 @@
               contentType: false,
               type: 'POST',
               success: function(data){
-                  {#alert(data);#}
                 console.log(data);
-                {#console.log(data.json());#}
               }
             });
         })

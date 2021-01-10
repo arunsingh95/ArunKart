@@ -4,7 +4,8 @@ from mykart.models import (UserDetail,
                            ProductDetail,
                            Manufacture,
                            Seller,
-                           ProductCategory)
+                           ProductCategory,
+                           AddToKart)
 from django.utils.html import format_html
 
 
@@ -20,3 +21,4 @@ admin.site.register(UserDetail)
 admin.site.register(Manufacture)
 admin.site.register(Seller)
 admin.site.register(ProductCategory)
+admin.site.register(AddToKart)
