@@ -1,0 +1,41 @@
+{% load mykart_tags %}
+{% block content %}
+    <p>USER TEST</p>
+    <table class="table" id="user_table" border="1">
+        <thead>
+            <tr>
+                <th>Profile Picture</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Delete User</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in users %}
+            <tr>
+                <td><img class="profile_picture" src="http://127.0.0.1:8000/media/profile_image/583x418.png" alt=""></td>
+                <td>{{ i.full_name }}</td>
+                <td>{{ i.age }}</td>
+                <td>{{ i.email }}</td>
+                <td>{{ i.city }}</td>
+                <td>{{ i.state }}</td>
+                <td>{{ i.country }}</td>
+                {% if request.user|has_group:"Admin" %}
+                    <td><button><a href="{% url 'delete' i.id %}" >Delete</a></button> <button id="edit_user" value="{{ i.id }}"><a href="#" >Edit</a></button></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+<script>
+    $(document).ready( function () {
+        $('#user_table').DataTable();
+    } );
+</script>
+{% endblock %}

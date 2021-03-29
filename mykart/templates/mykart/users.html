@@ -1,13 +1,26 @@
 {% extends "mykart/base.html" %}
 {% load mykart_tags %}
 {% block content %}
+<style>
+    body {
+        background-color: #95999c;
+    }
+    .profile_picture{
+        margin-left: 30px;
+        width: 100px;
+        height: 40px;
+    }
+</style>
 <body>
     <table class="table" id="user_table" border="1">
         <thead>
             <tr>
+                <th>Profile Picture</th>
                 <th>Name</th>
                 <th>Age</th>
+                <th>Email</th>
                 <th>City</th>
+                <th>State</th>
                 <th>Country</th>
                 <th>Delete User</th>
             </tr>
@@ -15,18 +28,57 @@
         <tbody>
         {% for i in users %}
             <tr>
+                <td><img class="profile_picture" src="http://127.0.0.1:8000/media/profile_image/583x418.png" alt=""></td>
                 <td>{{ i.full_name }}</td>
                 <td>{{ i.age }}</td>
+                <td>{{ i.email }}</td>
                 <td>{{ i.city }}</td>
+                <td>{{ i.state }}</td>
                 <td>{{ i.country }}</td>
                 {% if request.user|has_group:"Admin" %}
-                    <td><button><a href="{% url 'delete' i.id %}" >Delete</a></button> <button id="edit_user" value="{{ i.id }}"><a href="#" >Edit</a></button></td>
+                    <td>
+                        <button>
+                            <a href="{% url 'delete' i.id %}" >Delete
+                            </a>
+                        </button>
+                        <button id="edit_user" value="{{ i.id }}">
+                            <a href="{% url 'users_edit' i.id %}" >Edit
+                            </a>
+                        </button>
+                    </td>
                 {% endif %}
             </tr>
         {% endfor %}
         </tbody>
 
     </table>
+
+<!--    &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
+<!--      Launch demo modal-->
+<!--    </button>-->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            {% include "mykart/userdetail_update_form.html" %}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
 </body>
 <script>

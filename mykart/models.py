@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from imagekit.processors import ResizeToFill
 from imagekit.models import ProcessedImageField
 
@@ -29,6 +31,11 @@ class UserDetail(models.Model):
 
     def __str__(self):
         return self.full_name
+
+
+@receiver(post_save, sender=User)
+def save_user_userdetail(sender, instance, **kwargs):
+    instance.userdetail.save()
 
 
 class Manufacture(models.Model):
@@ -99,3 +106,12 @@ class AddToKart(models.Model):
 
     def __str__(self):
         return f"{self.user.full_name}_{self.product.product_name}_{self.quantity_added}"
+
+
+class Task(models.Model):
+    task = models.CharField(max_length=100, primary_key=True)
+    task_start_date = models.DateField(null=True, blank=True)
+    task_end_date = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return self.task

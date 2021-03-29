@@ -1,0 +1,67 @@
+{% extends "mykart/base.html" %}
+{% block content %}
+<style>
+    body {
+        background-color: #95999c;
+    }
+    .profile_picture{
+        margin-left: 30px;
+        width: 100px;
+        height: 40px;
+    }
+
+    #filter_submit {
+        margin-top: 30px;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <label for="first_name">First Name</label>
+                <input id="first_name" type="text">
+            </div>
+            <div class="col-2">
+                <label for="last_name">Last Name</label>
+                <input id="last_name" type="text">
+            </div>
+            <div class="col-2">
+                <input id="filter_submit" type="submit">
+            </div>
+        </div>
+    </div>
+    <div id="table_clear">
+        {% include "mykart/user_test_table.html" %}
+    </div>
+<!--    <div id="user_table_test">-->
+<!--    </div>-->
+</body>
+<!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>-->
+
+<script>
+    $(document).ready( function () {
+        $("#filter_submit").on("click", function(){
+            var first_name = $("#first_name").val();
+            var last_name = $("#last_name").val();
+            console.log(first_name, last_name);
+            if (first_name || last_name){
+                $.ajax({
+                    url: '/users_test/',
+                    type: 'GET',
+                    data: {
+                        first_name: first_name,
+                        last_name: last_name,
+                    },
+                    success: function(data){
+                        console.log(data);
+<!--                        $("#table_clear").empty();-->
+                        $("#table_clear").html(data);
+    <!--                    location.reload();-->
+                    }
+                });
+            }
+
+        });
+    } );
+</script>
+{% endblock %}

@@ -12,6 +12,37 @@
     <script src="{% static 'mykart/js/bootstrap.min.js' %}" ></script>
     <script src="{% static 'mykart/js/jquery.dataTables.min.js' %}" ></script>
 {#    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>#}
+    <style>
+        #user_name {
+            color : white;
+            margin-right: 10px;
+        }
+
+        .notification {
+          background-color: #555;
+          color: white;
+          text-decoration: none;
+          padding: 5px;
+          position: relative;
+          display: inline-block;
+          border-radius: 2px;
+          margin-right: 25px;
+        }
+
+        .notification:hover {
+          background: red;
+        }
+
+        .notification .badge {
+          position: absolute;
+          top: -15px;
+          right: -25px;
+          padding: 5px 10px;
+          border-radius: 50%;
+          background: red;
+          color: white;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-dark">
@@ -30,12 +61,37 @@
                   <li class="nav-item">
                     <a class="nav-link text-white" href="{% url 'product' %}">Products</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'users_test' %}">User Test</a>
+                  </li>
             </ul>
             <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="{% url "logout" %}">Logout</a></button>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <p id="user_name">{{request.user | upper }}</p>
+                        </div>
+                        <div class="col-3">
+                            <a href="#" class="notification">
+                              <span>cart</span>
+                              <span class="badge">0</span>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="{% url 'logout' %}">Logout</a></button>
+                        </div>
+                    </div>
+
+                </div>
             </form>
+<!--            <form class="form-inline">-->
+<!--&lt;!&ndash;                <p id="user_name">{{request.user | upper }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="#" class="notification">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <span>cart</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <span class="badge">3</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+<!--                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="{% url 'logout' %}">Logout</a></button>-->
+<!--            </form>-->
         </div>
     </nav>
     {% block content %}

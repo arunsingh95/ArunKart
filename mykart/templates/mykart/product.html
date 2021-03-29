@@ -151,26 +151,11 @@
                     <p class="product_label">
                         <span>Price </span><span class="product_value"><b>{{ i.price }}</b></span>
                     </p>
-                    <button class="btn btn-primary" id="add_kart">Add To kart</button>
+                    <button class="btn btn-primary" id="add_kart" value="{{i.id}}">Add To kart</button>
                 </div>
             {% endfor %}
         </div>
     </div>
-
-{#    <div class="container">#}
-{#        <div class="row product_card">#}
-{#            {% for i in product %}#}
-{#                <div class="card">#}
-{#                      <img class="card-img-top product_image" src="{{ MEDIA_URL }}{{ i.product_image.url }}" alt="Card image cap">#}
-{#                      <div class="row card-body">#}
-{#                           <p>name : <b>{{ i.product_name }}</b></p>#}
-{#                           <p>price : <b>{{ i.price }}</b></p>#}
-{#                           <a href="#" class="btn btn-primary" id="add_kart">Add to Kart</a>#}
-{#                      </div>#}
-{#                </div>#}
-{#            {% endfor %}#}
-{#        </div>#}
-{#    </div>#}
 
 </body>
 <script>
@@ -206,9 +191,14 @@
               type: 'POST',
               success: function(data){
                 console.log(data);
+                location.reload();
               }
             });
-        })
+        });
+
+        $(".card #add_kart").on('click', function(){
+            console.log($(this).val());
+        });
     });
 </script>
 {% endblock %}
